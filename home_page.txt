@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>insert records</title>
+</head> 
+<body>
+<div class="row text-center">
+    <div class="container">
+        <h1>Insert Employee Information</h1>
+    <form action="home_page.php" method="post">
+    <b>Employee ID: </b> <input type="text" name="emp_id" placeholder="Insert Employee ID"><br><br>
+    <b>Employee Name: </b><input type="text" name="emp_name" placeholder="Insert Employee Name"><br><br>
+    <b>Employee Salary :</b><input type="text" name="emp_salary" placeholder="Insert Employee Salary"><br><br>
+    <b>Employee Manager:</b><input type="text" name="emp_mng" placeholder="Insert Employee Manager"><br><br>
+    <input type="submit" name="submit" value="Insert Employee Record"><br><br>
+    </form>
+<button><a href="Show_records.php">Show Employee Records</a></button>
+    </div>
+</div>
+</body>
+</html>
+
+<?php
+error_reporting(1);
+include ('Db_connection.php'); 
+if(isset($_POST['submit'])){
+    $emp_id=$_POST['emp_id'];
+    $emp_name=$_POST['emp_name'];
+    $emp_salary=$_POST['emp_salary'];
+    $emp_manager=$_POST['emp_mng'];
+    $sql="INSERT INTO employee VALUES ('$emp_id','$emp_name','$emp_salary','$emp_manager')";
+    $data=mysqli_query($conn,$sql);
+    if($data){
+        echo"Employee Record Inserted Successfully";
+    }else
+    {
+        echo"Record could not be inserted.Some error occured";
+    }
+}
+?>

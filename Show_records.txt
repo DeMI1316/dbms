@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>show records</title>
+</head>
+<body> 
+<?php
+include ('Db _connection.php');
+$sql ="select * from employee";
+$data =mysqli_query($conn,$sql);
+$total=mysqli_num_rows($data);
+if ($total=mysqli_num_rows($data)) {
+?>
+    <tableborder="2">
+<tr>
+<th>Employee Id</th>
+<th>Employee Name</th> 
+<th>Employee Salary</th> 
+<th>Employee Manager</th>
+<th>Update Record</th> 
+<th>Delete Record</th>
+</tr>
+    <?php
+    while ($result = mysqli_fetch_array($data)) {
+        echo "
+            <tr>
+                <td>". $result['emp_id']." </td>
+                <td>" $result['emp_name']."</td>
+                <td>". $result['emp_salary']."</td>
+                <td>" $result['emp_mng']."</td>
+                <td><a href='update_record.php?emp_id=$result[emp_id] &
+emp_name=$result[emp_name] & emp_salary=$result[emp_salary] &
+emp_mng=$result[emp_mng]'>Update</a></td>
+                ‹td><a href='delete record.php?emp_id=$result[emp_id]'>Delete</a></td>
+            </tr>
+        ";
+    }
+}
+else
+{
+    echo"no record found";
+}
+?>
+</table>
+</body>
+</html>

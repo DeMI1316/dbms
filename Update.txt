@@ -1,0 +1,46 @@
+<?php
+error_reporting(1);
+include ('Db_connection.php');
+
+if ($_POST['submit'])
+{
+    $employee_id = $_POST['employee_id'];
+    $employee_name = $_POST['employee_name'];
+    $employee_salary = $_POST['employee_salary'];
+    $employee_mng = $_POST['employee_mng'];
+
+    $sql="UPDATE employee SET emp_name='$employee_name', emp_salary='$employee_salary',
+emp_mng= '$employee_mng' WHERE emp_id='$employee_id'";
+
+    $data=mysqli_query($conn, $sql);
+    if ($data) {
+        echo "Record Updated Successfully";
+        
+    }
+    else{
+        echo "Record is not updated";
+        
+    }
+}
+else
+{
+    echo "Click on button to save the changes";
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>update</title>
+</head> 
+<body>
+<form action="Update.php" method="POST">
+    
+    <input type="text" name="employee_id" placeholder= "Enter Employee Id" ><br><br>
+    <input type="text" name="employee_name" placeholder= "Enter Employee Name" ><br><br>
+    <input type="text" name="employee_salary" placeholder= "Enter Employee Salary" ><br><br>
+    <input type="text" name="employee_mng" placeholder="Enter Employee Manager" ><br><br>
+    <input type="submit" name="submit" value="submit">
+</form> 
+</body> 
+</html>

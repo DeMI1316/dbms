@@ -1,0 +1,32 @@
+<?php
+include('Db_connection.php');
+
+if ($_POST['submit'])
+{
+$id = $_POST['employee_id'];
+$sql="DELETE FROM employee WHERE emp_id='$id'";
+$data = mysqli_query($conn,$sql);
+if ($data) {
+    echo "Record deleted";
+    
+}else
+{
+    echo "error";
+}
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>update</title>
+</head> 
+<body>
+<form action="Delete_record.php" method="POST">
+    
+    <input type="text" name="employee_id" placeholder= "Enter Employee Id to Delete" ><br><br>
+    
+    <input type="submit" name="submit" value="submit">
+</form> 
+</body> 
+</html>
